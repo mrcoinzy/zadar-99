@@ -4,12 +4,9 @@ import { Facebook, Instagram, Twitter, MapPin } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="bg-deepBlue text-white pt-16 pb-8 relative overflow-hidden">
-      {/* Background effects */}
+    <footer className="bg-deepBlue text-white pt-16 pb-8 relative">
+      {/* Top border instead of wave */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-gold"></div>
-      <div className="absolute w-full h-[200px] top-0 left-0 opacity-5">
-        <div className="w-full h-full bg-wave-pattern bg-repeat-x bg-cover animate-wave"></div>
-      </div>
       
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">

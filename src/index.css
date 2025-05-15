@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=Lato:wght@300;400;700&family=Source+Sans+Pro:wght@300;400;600;700&family=Nunito+Sans:wght@300;400;600;700&display=swap');
 
 @tailwind base;
@@ -94,6 +93,7 @@
 
   body {
     @apply bg-white text-customBlack font-poppins;
+    overflow-x: hidden;
   }
 
   h1, h2, h3, h4 {
@@ -143,7 +143,5 @@
     @apply scale-[4] opacity-0 transition-all duration-1000 ease-out;
   }
 
-  .wave-divider {
-    @apply w-full h-24 bg-wave-pattern bg-repeat-x bg-cover animate-wave;
-  }
+  /* Remove wave divider class since we're not using it anymore */
 }
