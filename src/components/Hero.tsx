@@ -39,13 +39,15 @@ const Hero = () => {
         </div>
       </div>
 
-      <button
-        onClick={scrollToNextSection}
-        className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce p-2"
-        aria-label="Scroll to next section"
-      >
-        <ChevronDown size={30} />
-      </button>
+      <div className="absolute bottom-0 left-0 right-0 flex justify-center pb-4 sm:pb-8">
+        <button
+          onClick={scrollToNextSection}
+          className="text-white animate-bounce p-2"
+          aria-label="Scroll to next section"
+        >
+          <ChevronDown size={30} />
+        </button>
+      </div>
     </section>
   );
 };
