@@ -1,6 +1,6 @@
-
 import React from 'react';
 import { Clock, Gift, Award, CalendarCheck } from 'lucide-react';
+import { ShimmerButton } from './ui/shimmer-button';
 
 const FOMO = () => {
   return (
@@ -92,9 +92,9 @@ const FOMO = () => {
               Már csak <span className="text-gold font-bold">3 exkluzív időpont</span> maradt a nyári 
               szezonra - ne hagyd, hogy mások lefoglalják előled!
             </p>
-            <a href="#contact" className="gold-button inline-block animate-pulse text-sm sm:text-base">
-              Ne dönts azonnal – kérdezz először!
-            </a>
+            <ShimmerButton asChild>
+              <a href="#contact" className="inline-block animate-pulse text-sm sm:text-base text-black">Ne dönts azonnal – kérdezz először!</a>
+            </ShimmerButton>
           </div>
         </div>
       </div>

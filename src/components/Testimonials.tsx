@@ -1,7 +1,7 @@
-
 import React from 'react';
 import { Star, Quote } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { ShimmerButton } from './ui/shimmer-button';
 
 interface TestimonialProps {
   name: string;
@@ -80,9 +80,9 @@ const Testimonials = () => {
         </div>
 
         <div className="text-center">
-          <a href="#contact" className="gold-button inline-block text-sm sm:text-base">
-            Kérdezz először – a foglalás nem kötelez semmire!
-          </a>
+          <ShimmerButton asChild>
+            <a href="#contact" className="inline-block text-sm sm:text-base text-black">Kérdezz először – a foglalás nem kötelez semmire!</a>
+          </ShimmerButton>
         </div>
       </div>
     </section>

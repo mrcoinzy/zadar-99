@@ -1,14 +1,23 @@
-
 import React from 'react';
 import { Facebook, Instagram, Twitter, MapPin } from 'lucide-react';
 
 const Footer = () => {
+  React.useEffect(() => {
+    // Globálisan beállítjuk a body és html háttérszínét a fehér csík elkerülésére
+    document.body.style.backgroundColor = '#1A3558';
+    document.documentElement.style.backgroundColor = '#1A3558';
+    
+    return () => {
+      // Tisztítás, ha a komponenst eltávolítják
+      document.body.style.backgroundColor = '';
+      document.documentElement.style.backgroundColor = '';
+    };
+  }, []);
+
   return (
-    <footer className="bg-deepBlue text-white pt-12 sm:pt-16 pb-6 sm:pb-8 relative">
-      {/* Top border instead of wave */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-gold"></div>
-      
-      <div className="container mx-auto px-4 md:px-6">
+    <footer className="bg-deepBlue text-white pt-12 sm:pt-16 pb-0 overflow-hidden m-0 -mb-1 border-t-[1px] border-t-gold mt-0 w-full relative">
+      {/* Content container */}
+      <div className="container mx-auto px-4 md:px-8 relative z-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-8 sm:mb-12">
           <div>
             <div className="mb-4">
@@ -95,10 +104,16 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="pt-6 sm:pt-8 border-t border-white/10 text-center text-white/60 text-xs sm:text-sm">
+        <div className="pt-6 sm:pt-8 border-t border-white/10 text-center text-white/60 text-xs sm:text-sm pb-6">
           <p>&copy; {new Date().getFullYear()} Villa Zadar. Minden jog fenntartva.</p>
         </div>
       </div>
+      
+      {/* Extra padding to ensure footer extends to bottom */}
+      <div className="absolute bottom-0 left-0 right-0 h-16 bg-deepBlue"></div>
+      
+      {/* Background extension */}
+      <div className="absolute inset-0 -z-10 bg-deepBlue"></div>
     </footer>
   );
 };

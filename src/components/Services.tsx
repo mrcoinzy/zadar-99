@@ -1,10 +1,10 @@
-
 import React from 'react';
 import { 
   Car, Users, Utensils, CloudSun, Waves, 
   Heart, Wifi, Key, Calendar
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { ShimmerButton } from './ui/shimmer-button';
 
 interface ServiceCardProps {
   icon: React.ReactNode;
@@ -119,9 +119,9 @@ const Services = () => {
         </div>
 
         <div className="mt-10 sm:mt-12 text-center">
-          <a href="#contact" className="gold-button inline-block text-sm sm:text-base">
-            Írd meg, mi a legfontosabb – az ajánlatunkat teljesen rád szabjuk!
-          </a>
+          <ShimmerButton asChild>
+            <a href="#contact" className="inline-block text-sm sm:text-base text-black">Írd meg, mi a legfontosabb – az ajánlatunkat teljesen rád szabjuk!</a>
+          </ShimmerButton>
         </div>
       </div>
     </section>

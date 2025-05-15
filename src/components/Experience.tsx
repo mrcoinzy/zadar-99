@@ -1,5 +1,5 @@
-
 import React from 'react';
+import { ShimmerButton } from './ui/shimmer-button';
 
 const Experience = () => {
   return (
@@ -97,9 +97,9 @@ const Experience = () => {
         </div>
 
         <div className="mt-10 sm:mt-16 text-center">
-          <a href="#contact" className="gold-button inline-block text-sm sm:text-base">
-            Írd le, hogyan nézne ki az álomnyaralásod – megvalósítjuk!
-          </a>
+          <ShimmerButton asChild>
+            <a href="#contact" className="inline-block text-sm sm:text-base text-black">Írd le, hogyan nézne ki az álomnyaralásod – megvalósítjuk!</a>
+          </ShimmerButton>
         </div>
       </div>
     </section>
