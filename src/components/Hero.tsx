@@ -26,8 +26,10 @@ const Hero = () => {
       
       <div className="container mx-auto px-4 md:px-6 py-8 sm:py-12 md:py-16 relative z-10">
         <div className="max-w-3xl">
-          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white mb-3 sm:mb-6">
-            Ébredj a tengerparti <span className="gradient-text">luxusban</span>
+          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold text-white mb-3 sm:mb-6 leading-tight uppercase">
+            <span className="block">Ébredj</span>
+            <span className="block">a tengerparti</span>
+            <span className="gradient-text block">luxusban</span>
           </h1>
           <p className="text-sm sm:text-base md:text-xl lg:text-2xl text-white/90 mb-4 sm:mb-8">
             Zadar apartmanjaiban nem csak szállást kapsz, hanem olyan élményt, 
