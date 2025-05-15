@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { 
-  Car, Child, Utensils, CloudSun, Waves, 
+  Car, Users, Utensils, CloudSun, Waves, 
   Heart, Wifi, Key, Calendar, Search 
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -40,7 +40,7 @@ const Services = () => {
       badgeText: "INGYENES"
     },
     {
-      icon: <Child className="w-6 h-6 text-deepBlue" />,
+      icon: <Users className="w-6 h-6 text-deepBlue" />,
       title: "Gyerekbarát kialakítás",
       description: "Speciális felszerelés kisbabáknak, játszótér és szórakozás a gyerekeknek.",
       badgeText: "CSALÁDOKNAK"
