@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=Lato:wght@300;400;700&family=Source+Sans+Pro:wght@300;400;600;700&family=Nunito+Sans:wght@300;400;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -35,19 +38,12 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -79,6 +75,7 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
+
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -96,6 +93,57 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-white text-customBlack font-poppins;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-urbanist font-bold;
+  }
+
+  p {
+    @apply font-lato;
+  }
+}
+
+@layer components {
+  .highlight {
+    @apply relative;
+  }
+
+  .highlight::after {
+    @apply content-[''] absolute bottom-0 left-0 w-full h-[0.2em] bg-gold transform-gpu scale-x-0 origin-bottom-left transition-transform duration-300;
+  }
+
+  .highlight:hover::after {
+    @apply scale-x-100;
+  }
+
+  .blob {
+    @apply absolute bg-sandBeige/20 rounded-full filter blur-3xl animate-float;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-deepBlue via-gold to-sandBeige bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-flow;
+  }
+
+  .fancy-card {
+    @apply bg-sandBeige-light rounded-3xl p-6 shadow-float transition-all duration-300 hover:shadow-hover border border-sandBeige;
+  }
+
+  .gold-button {
+    @apply bg-gold text-customBlack font-montserrat font-bold uppercase tracking-wide py-3 px-8 rounded-full shadow-gold 
+           transition-all duration-300 hover:scale-105 hover:shadow-hover relative overflow-hidden;
+  }
+
+  .gold-button::after {
+    @apply content-[''] absolute top-0 left-0 w-full h-full bg-white rounded-full scale-0 opacity-30;
+  }
+
+  .gold-button:active::after {
+    @apply scale-[4] opacity-0 transition-all duration-1000 ease-out;
+  }
+
+  .wave-divider {
+    @apply w-full h-24 bg-wave-pattern bg-repeat-x bg-cover animate-wave;
   }
 }
