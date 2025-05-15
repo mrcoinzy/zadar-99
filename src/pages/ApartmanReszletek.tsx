@@ -1,11 +1,12 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import { Bed, Bath, Home, ParkingSquare, Sun, Utensils, Wifi, KeyRound, Bot, Phone, Mail } from 'lucide-react';
+import { Bed, Bath, Home, ParkingSquare, Sun, Utensils, Wifi, KeyRound, Bot, Phone, Mail, Facebook, Ship, X, ChevronLeft, ChevronRight, ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
 import TestimonialsWithMarquee from '@/components/TestimonialsWithMarquee';
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
 import { ApartmanokSwipe } from '@/components/ApartmanokSwipe';
 import Contact from '@/components/Contact';
+import { ShimmerButton } from '@/components/ui/shimmer-button';
 
 const apartmanok = [
   {
@@ -27,8 +28,8 @@ const apartmanok = [
   {
     slug: 'sunset-loft',
     name: 'Sunset Loft',
-    image: '/placeholder.svg',
-    gallery: ['/placeholder.svg', '/placeholder.svg', '/placeholder.svg'],
+    image: '/images/diklo-terasz.jpg',
+    gallery: ['/images/diklo/diklo-terasz.jpg', '/placeholder.svg', '/placeholder.svg'],
     short: 'Modern, panorámás apartman, naplemente terasszal és designer bútorokkal.',
     details: '1 hálószoba, 1 fürdő, amerikai konyha, óriási üvegfal, smart TV, közvetlen strandkapcsolat.',
     features: [
@@ -41,17 +42,24 @@ const apartmanok = [
   },
   {
     slug: 'mediterran-garden',
-    name: 'Mediterrán Garden',
-    image: '/placeholder.svg',
-    gallery: ['/placeholder.svg', '/placeholder.svg', '/placeholder.svg'],
-    short: 'Hangulatos kertkapcsolatos apartman, mediterrán növényekkel és grillterasszal.',
-    details: '2 hálószoba, 1 fürdő, teljesen felszerelt konyha, privát kert, kültéri étkező.',
+    name: 'Diklo Ivica Apartmanház',
+    image: '/images/diklo/diklo-terasz.jpg',
+    gallery: [
+      '/images/diklo/masodikkep.jpg',
+      '/images/diklo/harmadikkep.jpg',
+      '/images/diklo/negyedikkep.jpg',
+      '/images/diklo/otodikkep.jpg',
+      '/images/diklo/hatodikkep.jpg',
+    ],
+    short: `Fedezd fel a Diklo Ivica apartmanházat Zadar egyik legszebb, elit strandnegyedében, mindössze 250 méterre a lassan mélyülő, aprókavicsos tengerparttól!
+A környéken számos hangulatos étterem és kávézó vár, hogy igazán tartalmas legyen a pihenésed.`,
+    details: `Vadonatúj, modern bútorzat. Ingyenes, gyors wifi. Klíma minden helyiségben. Nagy képernyős műholdas TV. Teljesen felszerelt konyha. Kényelmes nappali, tágas fürdőszoba. Saját terasz, tengeri kilátással. Az ár tartalmazza a klímát, idegenforgalmi adót, wifi-t, műholdas TV-t.`,
     features: [
       { icon: Home, text: '2 hálószoba' },
       { icon: Bath, text: '1 fürdő' },
       { icon: Utensils, text: 'Teljesen felszerelt konyha' },
-      { icon: ParkingSquare, text: 'Privát kert' },
-      { icon: Utensils, text: 'Kültéri étkező' }
+      { icon: (props: any) => <SunsetIcon className="w-1 h-1 text-gold" {...props} />, text: 'Tengerre néző szoba' },
+      { icon: Utensils, text: 'Kültéri étkező, nagy teraszal' }
     ]
   }
 ];
@@ -137,6 +145,28 @@ const gyik = [
   },
 ];
 
+// Messenger SVG ikon komponens
+const MessengerIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 32 32" fill="none" {...props}>
+    <circle cx="16" cy="16" r="16" fill="#0084FF"/>
+    <path d="M8.5 20.5L13.5 15.5L17 19L22.5 13.5L17.5 18.5L14 15L8.5 20.5Z" fill="#fff"/>
+  </svg>
+);
+
+// Naplemente (Sunset) SVG ikon komponens
+const SunsetIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M17 18a5 5 0 0 0-10 0" />
+    <line x1="12" y1="9" x2="12" y2="2" />
+    <line x1="4.22" y1="10.22" x2="5.64" y2="11.64" />
+    <line x1="1" y1="18" x2="3" y2="18" />
+    <line x1="21" y1="18" x2="23" y2="18" />
+    <line x1="18.36" y1="11.64" x2="19.78" y2="10.22" />
+    <line x1="23" y1="22" x2="1" y2="22" />
+    <polyline points="16 5 12 9 8 5" />
+  </svg>
+);
+
 const ApartmanReszletek = () => {
   const { slug } = useParams();
   const apartman = apartmanok.find(a => a.slug === slug);
@@ -146,6 +176,8 @@ const ApartmanReszletek = () => {
   const [leirasAnim, setLeirasAnim] = useState(false);
   const leirasRef = useRef<HTMLDivElement>(null);
   const isNavigationFromSwipe = useRef(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
 
   // Oldal betöltésekor felgördít a tetejére, de csak ha nem swipe navigációból érkezünk
   useEffect(() => {
@@ -218,14 +250,74 @@ const ApartmanReszletek = () => {
       <div className="w-full max-w-6xl flex flex-col md:flex-row gap-10 md:gap-16 items-start">
         {/* Bal oldal: apartman adatok */}
         <div className="flex-1 flex flex-col items-center md:items-start">
+          {/* Vissza a főoldalra gomb */}
+          <a
+            href="/"
+            className="flex items-center gap-2 mb-4 font-semibold rounded-xl py-2 px-4 shadow bg-black text-white hover:bg-gray-900 transition-colors w-fit text-left"
+          >
+            <ArrowLeft className="w-5 h-5" />
+            Vissza a főoldalra
+          </a>
           {/* Főkép */}
-          <img src={apartman.image} alt={apartman.name} className="w-full max-w-2xl h-80 object-cover object-center rounded-2xl mb-4 shadow" />
+          <img
+            src={apartman.image}
+            alt={apartman.name}
+            className="w-full max-w-2xl h-80 object-cover object-center rounded-2xl mb-4 shadow cursor-pointer transition-transform hover:scale-105"
+            onClick={() => {
+              const idx = apartman.gallery.findIndex(img => img === apartman.image);
+              setLightboxIndex(idx >= 0 ? idx : 0);
+              setLightboxOpen(true);
+            }}
+          />
           {/* Galéria */}
           <div className="flex gap-4 mb-6">
             {apartman.gallery.map((img, i) => (
-              <img key={i} src={img} alt={apartman.name + ' galéria'} className="w-32 h-24 object-cover object-center rounded-xl shadow" />
+              <img
+                key={i}
+                src={img}
+                alt={apartman.name + ' galéria'}
+                className="w-32 h-24 object-cover object-center rounded-xl shadow cursor-pointer transition-transform hover:scale-105"
+                onClick={() => { setLightboxIndex(i); setLightboxOpen(true); }}
+              />
             ))}
           </div>
+          {/* Lightbox modal */}
+          {lightboxOpen && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm animate-fadein">
+              <button
+                className="absolute top-6 right-6 text-white bg-black/60 rounded-full p-2 hover:bg-black/80 transition-colors z-50"
+                onClick={() => setLightboxOpen(false)}
+                aria-label="Bezárás"
+              >
+                <X size={32} />
+              </button>
+              <button
+                className="absolute left-4 md:left-12 top-1/2 -translate-y-1/2 text-white bg-black/40 rounded-full p-2 hover:bg-black/70 transition-colors z-50"
+                onClick={() => setLightboxIndex((lightboxIndex - 1 + apartman.gallery.length) % apartman.gallery.length)}
+                aria-label="Előző kép"
+              >
+                <ChevronLeft size={32} />
+              </button>
+              <img
+                src={apartman.gallery[lightboxIndex]}
+                alt={apartman.name + ' nagy kép'}
+                className="max-h-[80vh] max-w-[90vw] rounded-2xl shadow-lg border-4 border-white object-contain animate-fadein"
+                onClick={e => e.stopPropagation()}
+              />
+              <button
+                className="absolute right-4 md:right-12 top-1/2 -translate-y-1/2 text-white bg-black/40 rounded-full p-2 hover:bg-black/70 transition-colors z-50"
+                onClick={() => setLightboxIndex((lightboxIndex + 1) % apartman.gallery.length)}
+                aria-label="Következő kép"
+              >
+                <ChevronRight size={32} />
+              </button>
+              {/* Lightbox háttérre kattintva zárás */}
+              <div
+                className="fixed inset-0 z-40"
+                onClick={() => setLightboxOpen(false)}
+              />
+            </div>
+          )}
           {/* Név, leírás, részletek */}
           <h1 className="text-3xl font-bold text-deepBlue mb-2 text-center md:text-left">{apartman.name}</h1>
           <div ref={leirasRef} className={`transition-all duration-200 mb-4 text-lg text-gray-700 text-center md:text-left rounded-xl px-2 py-1 ${leirasAnim ? 'border-4 border-green-500 animate-[roza-blink_0.6s_ease-in-out_3]' : ''}`}>{apartman.short}</div>
@@ -234,11 +326,18 @@ const ApartmanReszletek = () => {
           <div className="flex flex-wrap gap-6 mb-4">
             {apartman.features.map((feature, i) => (
               <div key={i} className="flex flex-row items-center gap-2 text-deepBlue/90 text-base">
-                {React.createElement(feature.icon, { size: 22, className: 'text-gold' })}
+                {React.createElement(feature.icon, { className: 'w-5 h-5 text-gold' })}
                 <span>{feature.text}</span>
               </div>
             ))}
           </div>
+          {/* Grátisz hajós jogosítvány CTA */}
+          <a
+            href={`/fizetes/${apartman.slug}`}
+            className="font-bold rounded-xl py-2 px-6 shadow bg-black text-white hover:bg-gray-900 transition-colors mt-2 mb-6 block text-left"
+          >
+            Igen, ezt az apartmant szeretném!
+          </a>
         </div>
         {/* Jobb oldal: Róza asszisztens */}
         <motion.div
@@ -257,6 +356,34 @@ const ApartmanReszletek = () => {
               </div>
             </div>
             <div className="flex flex-col gap-3 w-full md:w-[260px]">
+              {/* Ingyenes foglalás shimmer CTA */}
+              <ShimmerButton asChild>
+                <a
+                  href={`/fizetes/${apartman.slug}`}
+                  className="w-full text-center font-semibold rounded-xl py-2 px-4 shadow text-white bg-gold/90 hover:bg-gold transition-colors"
+                >
+                  Ingyenes foglalás
+                </a>
+              </ShimmerButton>
+              {/* Messenger kapcsolat */}
+              <a
+                href="https://m.me/zadarszallas"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 w-full bg-blue-100 hover:bg-blue-200 text-blue-900 font-semibold rounded-xl py-2 px-4 shadow transition-colors"
+              >
+                Privát kérdésed van? Vedd fel velünk a kapcsolatot Messengeren!
+              </a>
+              {/* Facebook csoport */}
+              <a
+                href="https://www.facebook.com/groups/1327638613936773"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 w-full bg-blue-50 hover:bg-blue-100 text-blue-900 font-semibold rounded-xl py-2 px-4 shadow transition-colors"
+              >
+                Csatlakozz Facebook csoportunkhoz a legfrissebb akciókért és tippekért!
+              </a>
+              {/* További Róza gombok */}
               <button
                 className={`w-full font-semibold rounded-xl py-2 px-4 shadow transition-colors text-left ${rozaState==='leiras' ? 'bg-green-500 text-white animate-[roza-blink_0.6s_ease-in-out_3]' : 'bg-gold/90 hover:bg-gold text-white'}`}
                 onClick={() => setRozaState('leiras')}
@@ -268,12 +395,6 @@ const ApartmanReszletek = () => {
                 onClick={() => setRozaState('elerhetoseg')}
               >
                 Elérhetőségek
-              </button>
-              <button
-                className="w-full bg-gold/90 hover:bg-gold text-white font-semibold rounded-xl py-2 px-4 shadow transition-colors text-left"
-                onClick={() => navigate(`/fizetes/${apartman.slug}`)}
-              >
-                Szállás foglalása online
               </button>
               <button
                 className={`w-full font-semibold rounded-xl py-2 px-4 shadow transition-colors text-left ${rozaState==='gyik' ? 'bg-gold text-white ring-2 ring-gold' : 'bg-gold/90 hover:bg-gold text-white'}`}
@@ -298,6 +419,13 @@ const ApartmanReszletek = () => {
         @keyframes roza-blink {
           0%, 100% { box-shadow: 0 0 0 0 #22c55e; border-color: #22c55e; }
           50% { box-shadow: 0 0 0 6px #22c55e44; border-color: #22c55e; }
+        }
+        .animate-fadein {
+          animation: fadein 0.3s;
+        }
+        @keyframes fadein {
+          from { opacity: 0; transform: scale(0.98); }
+          to { opacity: 1; transform: scale(1); }
         }
       `}</style>
     </div>
