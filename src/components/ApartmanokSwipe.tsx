@@ -1,3 +1,4 @@
+
 import React, { useState, useRef } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { Bed, Bath, Home, ParkingSquare, Sun, Utensils, Wifi, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -61,7 +62,7 @@ export const ApartmanokSwipe = ({ excludeSlug }: { excludeSlug?: string }) => {
   const [dragging, setDragging] = useState(false);
   const navigate = useNavigate();
 
-  const visibleCount = 3;
+  const visibleCount = Math.min(3, filtered.length);
   const canGoLeft = startIndex > 0;
   const canGoRight = startIndex + visibleCount < filtered.length;
 
@@ -129,7 +130,7 @@ export const ApartmanokSwipe = ({ excludeSlug }: { excludeSlug?: string }) => {
             animate={controls}
             style={{ touchAction: 'pan-x', cursor: dragging ? 'grabbing' : 'grab' }}
           >
-            {filtered.slice(startIndex, startIndex + visibleCount).map((apartman, idx) => (
+            {filtered.slice(startIndex, startIndex + visibleCount).map((apartman) => (
               <div
                 key={apartman.slug}
                 className="w-[320px] h-[420px] bg-white rounded-3xl shadow-xl border border-gold/30 overflow-hidden group transition-all duration-300 flex-shrink-0 cursor-pointer hover:scale-105"
@@ -168,4 +169,4 @@ export const ApartmanokSwipe = ({ excludeSlug }: { excludeSlug?: string }) => {
       </div>
     </section>
   );
-}; 
+};

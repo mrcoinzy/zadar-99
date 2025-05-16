@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
@@ -9,6 +10,7 @@ import Experience from '@/components/Experience';
 import FOMO from '@/components/FOMO';
 import Contact from '@/components/Contact';
 import { Apartmanok } from '@/components/Apartmanok';
+import Footer from '@/components/Footer';
 
 const Index = () => {
   useEffect(() => {
@@ -20,19 +22,20 @@ const Index = () => {
 
   return (
     <motion.div
-      className="min-h-screen"
+      className="min-h-screen relative overflow-x-hidden"
       initial={{ opacity: 0, y: 32 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: 'easeOut' }}
     >
       <Navbar />
-      <RevealOnScroll><Hero /></RevealOnScroll>
-      <RevealOnScroll><Testimonials /></RevealOnScroll>
-      <RevealOnScroll><Apartmanok /></RevealOnScroll>
-      <RevealOnScroll><Services /></RevealOnScroll>
-      <RevealOnScroll><Experience /></RevealOnScroll>
-      <RevealOnScroll><FOMO /></RevealOnScroll>
-      <RevealOnScroll><Contact /></RevealOnScroll>
+      <div id="hero"><RevealOnScroll><Hero /></RevealOnScroll></div>
+      <div id="testimonials"><RevealOnScroll><Testimonials /></RevealOnScroll></div>
+      <div id="apartmanok"><RevealOnScroll><Apartmanok /></RevealOnScroll></div>
+      <div id="services"><RevealOnScroll><Services /></RevealOnScroll></div>
+      <div id="experience"><RevealOnScroll><Experience /></RevealOnScroll></div>
+      <div id="fomo"><RevealOnScroll><FOMO /></RevealOnScroll></div>
+      <div id="contact"><RevealOnScroll><Contact /></RevealOnScroll></div>
+      <Footer />
     </motion.div>
   );
 };
