@@ -39,18 +39,31 @@ const apartmanok = [
   },
   {
     slug: 'sunset-loft',
-    name: 'Sunset Loft',
-    image: '/images/diklo-terasz.jpg',
-    gallery: ['/images/diklo/diklo-terasz.jpg', '/placeholder.svg', '/placeholder.svg'],
-    short: 'Modern, panorámás apartman, naplemente terasszal és designer bútorokkal.',
-    details: '1 hálószoba, 1 fürdő, amerikai konyha, óriási üvegfal, smart TV, közvetlen strandkapcsolat.',
+    name: 'Elit Apartmanház Zadar – 100 méterre a tengertől, Diklo strandnegyedében',
+    image: '/lovable-uploads/c3d24d50-db97-4ac5-997f-d3b830815510.png',
+    gallery: [
+      '/lovable-uploads/c3d24d50-db97-4ac5-997f-d3b830815510.png', 
+      '/lovable-uploads/d3b39d06-1387-426b-bad8-8d07952d5d8d.png', 
+      '/lovable-uploads/a6d2236b-5739-49c0-ada2-d8ad4124439f.png',
+      '/lovable-uploads/ed62bbae-a24c-4263-9a3f-98ec368b3876.png',
+      '/lovable-uploads/a4a68a41-913a-47c6-83f0-9b0d6754f10e.png',
+      '/lovable-uploads/f0765b71-c723-411a-b0c6-4707c2f748ac.png',
+    ],
+    short: 'Az apartman több szobás, panorámás apartmanház tengerre néző terasszal Zadar egyik legnépszerűbb, elit strandövezetében – mindössze 100 méterre a parttól!',
+    details: 'Modern, kényelmes felszereltség, csendes zöldövezetben, ideális választás pároknak, családoknak vagy baráti társaságoknak, akik minőségi nyaralásra vágynak.',
     features: [
-      { icon: Home, text: '1 hálószoba' },
-      { icon: Bath, text: '1 fürdő' },
-      { icon: Utensils, text: 'Amerikai konyha' },
-      { icon: Sun, text: 'Közvetlen strandkapcsolat' },
-      { icon: Wifi, text: 'Smart TV' }
-    ]
+      { icon: Home, text: 'Több hálószobás, több fürdőszobás, tágas apartmanok' },
+      { icon: Sun, text: 'Lenyűgöző panoráma, tengerre néző, berendezett terasz' },
+      { icon: Bed, text: 'Ideális pároknak, családoknak, baráti társaságoknak' },
+      { icon: Wifi, text: 'Ingyenes Wi-Fi és klíma minden apartmanban' },
+      { icon: Utensils, text: 'Modern, kényelmes felszereltség, csendes zöldövezetben' }
+    ],
+    prices: {
+      high: '2–3 főre: 70–80 EUR/éj',
+      low: '4 főre: 100–120 EUR/éj',
+      extra: 'Egyedi kedvezmények, szezonális ajánlatok'
+    },
+    extra: 'Örök tengeri hajóvezetői jogosítvány akár egy nap alatt, nyaralás közben – kérdezz bátran a részletekről!'
   },
   {
     slug: 'mediterran-garden',
@@ -348,8 +361,11 @@ const ApartmanReszletek = () => {
           {'prices' in apartman && (
             <div className="w-full bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
               <h3 className="font-bold text-green-700 mb-2">Árak:</h3>
-              <p className="text-green-800"><span className="font-semibold">Július-augusztus:</span> {apartman.prices.high}</p>
-              <p className="text-green-800"><span className="font-semibold">Elő- és utószezon:</span> {apartman.prices.low}</p>
+              <p className="text-green-800"><span className="font-semibold">{apartman.slug === 'sunset-loft' ? '' : 'Július-augusztus:'}</span> {apartman.prices.high}</p>
+              <p className="text-green-800"><span className="font-semibold">{apartman.slug === 'sunset-loft' ? '' : 'Elő- és utószezon:'}</span> {apartman.prices.low}</p>
+              {apartman.prices.extra && (
+                <p className="text-green-800 mt-1">{apartman.prices.extra}</p>
+              )}
             </div>
           )}
           
