@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ChevronDown } from 'lucide-react';
 import { AuroraBackground } from './ui/AuroraBackground';
@@ -12,7 +13,7 @@ const Hero = () => {
   };
 
   return (
-    <AuroraBackground className="relative overflow-hidden">
+    <AuroraBackground className="relative overflow-hidden" fullHeight={true}>
       {/* Background blobs eltávolítva, AuroraBackground helyettesíti */}
       <div className="container mx-auto px-4 md:px-6 py-8 sm:py-12 md:py-16 relative z-10">
         <div className="max-w-3xl">

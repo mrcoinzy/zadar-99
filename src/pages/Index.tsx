@@ -22,13 +22,13 @@ const Index = () => {
 
   return (
     <motion.div
-      className="min-h-screen relative overflow-x-hidden"
+      className="relative w-full"
       initial={{ opacity: 0, y: 32 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: 'easeOut' }}
     >
       <Navbar />
-      <div id="hero"><RevealOnScroll><Hero /></RevealOnScroll></div>
+      <div id="hero"><Hero /></div>
       <div id="testimonials"><RevealOnScroll><Testimonials /></RevealOnScroll></div>
       <div id="apartmanok"><RevealOnScroll><Apartmanok /></RevealOnScroll></div>
       <div id="services"><RevealOnScroll><Services /></RevealOnScroll></div>

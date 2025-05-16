@@ -1,21 +1,12 @@
+
 import React from 'react';
 import { Facebook, Instagram, Twitter, MapPin } from 'lucide-react';
 
 const Footer = () => {
-  React.useEffect(() => {
-    // Globálisan beállítjuk a body és html háttérszínét a fehér csík elkerülésére
-    document.body.style.backgroundColor = '#1A3558';
-    document.documentElement.style.backgroundColor = '#1A3558';
-    
-    return () => {
-      // Tisztítás, ha a komponenst eltávolítják
-      document.body.style.backgroundColor = '';
-      document.documentElement.style.backgroundColor = '';
-    };
-  }, []);
-
+  // Removed the useEffect that was setting document body styles
+  
   return (
-    <footer className="bg-deepBlue text-white pt-12 sm:pt-16 pb-0 overflow-hidden m-0 -mb-1 border-t-[1px] border-t-gold mt-0 w-full relative">
+    <footer className="bg-deepBlue text-white pt-12 sm:pt-16 pb-0 overflow-hidden m-0 border-t-[1px] border-t-gold mt-0 w-full relative">
       {/* Content container */}
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-8 sm:mb-12">
