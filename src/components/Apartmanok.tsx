@@ -40,7 +40,7 @@ const apartmanok = [
     id: 3,
     slug: 'mediterran-garden',
     name: 'Mediterrán Garden',
-    image: '/placeholder.svg',
+    image: '/images/elso_apartman.png',
     short: 'Hangulatos kertkapcsolatos apartman, mediterrán növényekkel és grillterasszal.',
     details: '2 hálószoba, 1 fürdő, teljesen felszerelt konyha, privát kert, kültéri étkező.',
     features: [

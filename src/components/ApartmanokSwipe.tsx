@@ -34,7 +34,7 @@ const apartmanok = [
   {
     slug: 'mediterran-garden',
     name: 'Mediterrán Garden',
-    image: '/placeholder.svg',
+    image: '/images/elso_apartman.jpg',
     short: 'Hangulatos kertkapcsolatos apartman, mediterrán növényekkel és grillterasszal.',
     features: [
       { icon: Home, text: '2 hálószoba' },
