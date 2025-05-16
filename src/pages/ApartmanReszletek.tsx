@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import { Bed, Bath, Home, ParkingSquare, Sun, Utensils, Wifi, KeyRound, Bot, Phone, Mail, Facebook, Ship, X, ChevronLeft, ChevronRight, ArrowLeft } from 'lucide-react';
+import { Bed, Bath, Home, ParkingSquare, Sun, Utensils, Wifi, KeyRound, Bot, Phone, Mail, Facebook, Ship, X, ChevronLeft, ChevronRight, ArrowLeft, TreeDeciduous, AirVent, Tv, Tent } from 'lucide-react';
 import { motion } from 'framer-motion';
 import TestimonialsWithMarquee from '@/components/TestimonialsWithMarquee';
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
@@ -11,19 +11,31 @@ import { ShimmerButton } from '@/components/ui/shimmer-button';
 const apartmanok = [
   {
     slug: 'adria-deluxe',
-    name: 'Adria Deluxe',
-    image: '/placeholder.svg',
-    gallery: ['/placeholder.svg', '/placeholder.svg', '/placeholder.svg'],
-    short: 'Tágas, tengerre néző luxus apartman, saját jacuzzival és napozóterasszal.',
-    details: '2 hálószoba, 2 fürdő, prémium konyha, közvetlen tengerparti kilátás, okosotthon rendszer, privát parkoló.',
+    name: 'Zadar Riviera',
+    image: '/lovable-uploads/0160d8b9-488e-4c98-9eb4-793e9a769917.png',
+    gallery: [
+      '/lovable-uploads/0160d8b9-488e-4c98-9eb4-793e9a769917.png', 
+      '/lovable-uploads/b198b498-391d-4455-8afb-c97ee2aec0fa.png', 
+      '/lovable-uploads/68c13429-6dab-4dba-9d4c-f918a9909f99.png',
+      '/lovable-uploads/93c00875-6bd8-445c-82ee-19964e606fe7.png',
+      '/lovable-uploads/89d41de0-6c5a-4778-a9e2-1f408b066517.png'
+    ],
+    short: 'Pihenj a Zadar Riviéra egyik legkedveltebb, zöldövezeti részén, csupán 9 perc sétára (vagy 1 perc autóval) a lassan mélyülő, kristálytiszta tengerparttól.',
+    details: 'A földszinten található, teljesen felszerelt, modern apartman ideális választás családoknak vagy pároknak, akik csendes, panorámás, mégis mindenhez közeli helyet keresnek.',
     features: [
-      { icon: Home, text: '2 hálószoba' },
-      { icon: Bath, text: '2 fürdő' },
-      { icon: Utensils, text: 'Prémium konyha' },
-      { icon: ParkingSquare, text: 'Privát parkoló' },
-      { icon: Sun, text: 'Közvetlen tengerparti kilátás' },
-      { icon: Wifi, text: 'Okosotthon rendszer' }
-    ]
+      { icon: Sun, text: 'Medence & panoráma' },
+      { icon: TreeDeciduous, text: 'Közvetlen zöldövezet' },
+      { icon: AirVent, text: 'Klíma, ingyenes Wi-Fi, LCD TV' },
+      { icon: Utensils, text: 'Felszerelt konyha' },
+      { icon: Tent, text: 'Privát terasz' },
+      { icon: ParkingSquare, text: 'Ingyenes privát parkoló' },
+      { icon: Bed, text: '1 hálószoba (2 kétszemélyes ágy), nappali + pótágyazható kanapé, modern fürdőszoba/WC' }
+    ],
+    prices: {
+      high: '80 EUR/nap/4 fő (2 felnőtt + 2 gyerek)',
+      low: '40–60 EUR/nap/4 fő'
+    },
+    extra: 'Örök tengeri hajóvezetői jogosítvány akár egy nap alatt, nyaralás közben – kérdezz bátran a részletekről!'
   },
   {
     slug: 'sunset-loft',
@@ -270,13 +282,13 @@ const ApartmanReszletek = () => {
             }}
           />
           {/* Galéria */}
-          <div className="flex gap-4 mb-6">
+          <div className="flex gap-4 mb-6 overflow-x-auto pb-2 w-full">
             {apartman.gallery.map((img, i) => (
               <img
                 key={i}
                 src={img}
                 alt={apartman.name + ' galéria'}
-                className="w-32 h-24 object-cover object-center rounded-xl shadow cursor-pointer transition-transform hover:scale-105"
+                className="w-32 h-24 object-cover object-center rounded-xl shadow cursor-pointer transition-transform hover:scale-105 flex-shrink-0"
                 onClick={() => { setLightboxIndex(i); setLightboxOpen(true); }}
               />
             ))}
@@ -331,7 +343,28 @@ const ApartmanReszletek = () => {
               </div>
             ))}
           </div>
-          {/* Grátisz hajós jogosítvány CTA */}
+          
+          {/* Árak */}
+          {'prices' in apartman && (
+            <div className="w-full bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+              <h3 className="font-bold text-green-700 mb-2">Árak:</h3>
+              <p className="text-green-800"><span className="font-semibold">Július-augusztus:</span> {apartman.prices.high}</p>
+              <p className="text-green-800"><span className="font-semibold">Elő- és utószezon:</span> {apartman.prices.low}</p>
+            </div>
+          )}
+          
+          {/* Extra élmény */}
+          {'extra' in apartman && (
+            <div className="w-full bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+              <h3 className="font-bold text-blue-700 mb-2">Extra élmény:</h3>
+              <p className="text-blue-800 flex items-center gap-2">
+                <Ship className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                {apartman.extra}
+              </p>
+            </div>
+          )}
+          
+          {/* CTA */}
           <a
             href={`/fizetes/${apartman.slug}`}
             className="font-bold rounded-xl py-2 px-6 shadow bg-black text-white hover:bg-gray-900 transition-colors mt-2 mb-6 block text-left"
@@ -432,4 +465,4 @@ const ApartmanReszletek = () => {
   );
 };
 
-export default ApartmanReszletek; 
+export default ApartmanReszletek;
