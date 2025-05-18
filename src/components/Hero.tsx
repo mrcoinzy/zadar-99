@@ -18,12 +18,12 @@ const Hero = () => {
       <div className="container mx-auto px-4 md:px-6 py-8 sm:py-12 md:py-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center">
           <div className="max-w-3xl">
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold text-black mb-3 sm:mb-6 leading-tight uppercase">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-black mb-3 sm:mb-6 leading-tight uppercase">
               <span className="block">Ébredj</span>
               <span className="block">a tengerparti</span>
               <span className="gradient-text block text-black">luxusban</span>
             </h1>
-            <p className="text-sm sm:text-base md:text-xl lg:text-2xl text-black/90 mb-4 sm:mb-8">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-black/90 mb-4 sm:mb-8">
               Zadar apartmanjaiban nem csak szállást kapsz, hanem olyan élményt, 
               amire egész évben visszavágysz. Itt minden rólad szól, minden részlet személyre szabott.
             </p>
@@ -34,7 +34,7 @@ const Hero = () => {
             </ShimmerButton>
           </div>
           
-          {/* Automatikusan mozgó kép a jobb oldalon */}
+          {/* Automatikusan mozgó kép a jobb oldalon - mobilon rejtett, tableten/desktopon látható */}
           <div className="relative hidden md:block h-full overflow-hidden rounded-xl shadow-2xl">
             <motion.div
               animate={{
@@ -64,7 +64,7 @@ const Hero = () => {
           className="text-black animate-bounce p-2"
           aria-label="Scroll to next section"
         >
-          <ChevronDown size={30} />
+          <ChevronDown size={24} className="sm:w-8 sm:h-8" />
         </button>
       </div>
     </AuroraBackground>

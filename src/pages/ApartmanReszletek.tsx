@@ -271,23 +271,23 @@ const ApartmanReszletek = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-white py-12 px-2">
-      <div className="w-full max-w-6xl flex flex-col md:flex-row gap-10 md:gap-16 items-start">
+    <div className="min-h-screen flex flex-col items-center bg-white py-8 sm:py-12 px-3 sm:px-4">
+      <div className="w-full max-w-6xl flex flex-col md:flex-row gap-6 md:gap-10 lg:gap-16 items-start">
         {/* Bal oldal: apartman adatok */}
-        <div className="flex-1 flex flex-col items-center md:items-start">
+        <div className="flex-1 w-full flex flex-col items-center md:items-start">
           {/* Vissza a főoldalra gomb */}
           <a
             href="/"
             className="flex items-center gap-2 mb-4 font-semibold rounded-xl py-2 px-4 shadow bg-black text-white hover:bg-gray-900 transition-colors w-fit text-left"
           >
-            <ArrowLeft className="w-5 h-5" />
-            Vissza a főoldalra
+            <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+            <span className="text-sm sm:text-base">Vissza a főoldalra</span>
           </a>
           {/* Főkép */}
           <img
             src={apartman.image}
             alt={apartman.name}
-            className="w-full max-w-2xl h-80 object-cover object-center rounded-2xl mb-4 shadow cursor-pointer transition-transform hover:scale-105"
+            className="w-full h-60 sm:h-80 object-cover object-center rounded-2xl mb-4 shadow cursor-pointer transition-transform hover:scale-[1.02]"
             onClick={() => {
               const idx = apartman.gallery.findIndex(img => img === apartman.image);
               setLightboxIndex(idx >= 0 ? idx : 0);
@@ -295,46 +295,46 @@ const ApartmanReszletek = () => {
             }}
           />
           {/* Galéria */}
-          <div className="flex gap-4 mb-6 overflow-x-auto pb-2 w-full">
+          <div className="flex gap-2 sm:gap-4 mb-6 overflow-x-auto pb-2 w-full">
             {apartman.gallery.map((img, i) => (
               <img
                 key={i}
                 src={img}
                 alt={apartman.name + ' galéria'}
-                className="w-32 h-24 object-cover object-center rounded-xl shadow cursor-pointer transition-transform hover:scale-105 flex-shrink-0"
+                className="w-24 h-20 sm:w-32 sm:h-24 object-cover object-center rounded-xl shadow cursor-pointer transition-transform hover:scale-105 flex-shrink-0"
                 onClick={() => { setLightboxIndex(i); setLightboxOpen(true); }}
               />
             ))}
           </div>
           {/* Lightbox modal */}
           {lightboxOpen && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm animate-fadein">
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm animate-fadein p-2 sm:p-4">
               <button
-                className="absolute top-6 right-6 text-white bg-black/60 rounded-full p-2 hover:bg-black/80 transition-colors z-50"
+                className="absolute top-2 right-2 sm:top-6 sm:right-6 text-white bg-black/60 rounded-full p-1 sm:p-2 hover:bg-black/80 transition-colors z-50"
                 onClick={() => setLightboxOpen(false)}
                 aria-label="Bezárás"
               >
-                <X size={32} />
+                <X size={24} className="sm:w-8 sm:h-8" />
               </button>
               <button
-                className="absolute left-4 md:left-12 top-1/2 -translate-y-1/2 text-white bg-black/40 rounded-full p-2 hover:bg-black/70 transition-colors z-50"
+                className="absolute left-2 sm:left-4 md:left-12 top-1/2 -translate-y-1/2 text-white bg-black/40 rounded-full p-1 sm:p-2 hover:bg-black/70 transition-colors z-50"
                 onClick={() => setLightboxIndex((lightboxIndex - 1 + apartman.gallery.length) % apartman.gallery.length)}
                 aria-label="Előző kép"
               >
-                <ChevronLeft size={32} />
+                <ChevronLeft size={24} className="sm:w-8 sm:h-8" />
               </button>
               <img
                 src={apartman.gallery[lightboxIndex]}
                 alt={apartman.name + ' nagy kép'}
-                className="max-h-[80vh] max-w-[90vw] rounded-2xl shadow-lg border-4 border-white object-contain animate-fadein"
+                className="max-h-[80vh] max-w-[90vw] rounded-xl sm:rounded-2xl shadow-lg border-2 sm:border-4 border-white object-contain animate-fadein"
                 onClick={e => e.stopPropagation()}
               />
               <button
-                className="absolute right-4 md:right-12 top-1/2 -translate-y-1/2 text-white bg-black/40 rounded-full p-2 hover:bg-black/70 transition-colors z-50"
+                className="absolute right-2 sm:right-4 md:right-12 top-1/2 -translate-y-1/2 text-white bg-black/40 rounded-full p-1 sm:p-2 hover:bg-black/70 transition-colors z-50"
                 onClick={() => setLightboxIndex((lightboxIndex + 1) % apartman.gallery.length)}
                 aria-label="Következő kép"
               >
-                <ChevronRight size={32} />
+                <ChevronRight size={24} className="sm:w-8 sm:h-8" />
               </button>
               {/* Lightbox háttérre kattintva zárás */}
               <div
@@ -344,14 +344,14 @@ const ApartmanReszletek = () => {
             </div>
           )}
           {/* Név, leírás, részletek */}
-          <h1 className="text-3xl font-bold text-deepBlue mb-2 text-center md:text-left">{apartman.name}</h1>
-          <div ref={leirasRef} className={`transition-all duration-200 mb-4 text-lg text-gray-700 text-center md:text-left rounded-xl px-2 py-1 ${leirasAnim ? 'border-4 border-green-500 animate-[roza-blink_0.6s_ease-in-out_3]' : ''}`}>{apartman.short}</div>
-          <p className="text-base text-gray-500 mb-6 text-center md:text-left">{apartman.details}</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-deepBlue mb-2 text-center md:text-left">{apartman.name}</h1>
+          <div ref={leirasRef} className={`transition-all duration-200 mb-4 text-base sm:text-lg text-gray-700 text-center md:text-left rounded-xl px-2 py-1 ${leirasAnim ? 'border-4 border-green-500 animate-[roza-blink_0.6s_ease-in-out_3]' : ''}`}>{apartman.short}</div>
+          <p className="text-sm sm:text-base text-gray-500 mb-6 text-center md:text-left">{apartman.details}</p>
           {/* Jellemzők */}
-          <div className="flex flex-wrap gap-6 mb-4">
+          <div className="flex flex-wrap gap-4 sm:gap-6 mb-4 justify-center md:justify-start">
             {apartman.features.map((feature, i) => (
-              <div key={i} className="flex flex-row items-center gap-2 text-deepBlue/90 text-base">
-                {React.createElement(feature.icon, { className: 'w-5 h-5 text-gold' })}
+              <div key={i} className="flex flex-row items-center gap-2 text-deepBlue/90 text-sm sm:text-base">
+                {React.createElement(feature.icon, { className: 'w-4 h-4 sm:w-5 sm:h-5 text-gold' })}
                 <span>{feature.text}</span>
               </div>
             ))}
@@ -359,22 +359,22 @@ const ApartmanReszletek = () => {
           
           {/* Árak */}
           {'prices' in apartman && (
-            <div className="w-full bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
-              <h3 className="font-bold text-green-700 mb-2">Árak:</h3>
-              <p className="text-green-800"><span className="font-semibold">{apartman.slug === 'sunset-loft' ? '' : 'Július-augusztus:'}</span> {apartman.prices.high}</p>
-              <p className="text-green-800"><span className="font-semibold">{apartman.slug === 'sunset-loft' ? '' : 'Elő- és utószezon:'}</span> {apartman.prices.low}</p>
+            <div className="w-full bg-green-50 border border-green-200 rounded-lg p-3 sm:p-4 mb-6">
+              <h3 className="font-bold text-green-700 mb-2 text-sm sm:text-base">Árak:</h3>
+              <p className="text-green-800 text-sm sm:text-base"><span className="font-semibold">{apartman.slug === 'sunset-loft' ? '' : 'Július-augusztus:'}</span> {apartman.prices.high}</p>
+              <p className="text-green-800 text-sm sm:text-base"><span className="font-semibold">{apartman.slug === 'sunset-loft' ? '' : 'Elő- és utószezon:'}</span> {apartman.prices.low}</p>
               {apartman.prices.extra && (
-                <p className="text-green-800 mt-1">{apartman.prices.extra}</p>
+                <p className="text-green-800 mt-1 text-sm sm:text-base">{apartman.prices.extra}</p>
               )}
             </div>
           )}
           
           {/* Extra élmény */}
           {'extra' in apartman && (
-            <div className="w-full bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-              <h3 className="font-bold text-blue-700 mb-2">Extra élmény:</h3>
-              <p className="text-blue-800 flex items-center gap-2">
-                <Ship className="w-5 h-5 text-blue-600 flex-shrink-0" />
+            <div className="w-full bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4 mb-6">
+              <h3 className="font-bold text-blue-700 mb-2 text-sm sm:text-base">Extra élmény:</h3>
+              <p className="text-blue-800 flex items-center gap-2 text-sm sm:text-base">
+                <Ship className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 flex-shrink-0" />
                 {apartman.extra}
               </p>
             </div>
@@ -383,7 +383,7 @@ const ApartmanReszletek = () => {
           {/* CTA */}
           <a
             href={`/fizetes/${apartman.slug}`}
-            className="font-bold rounded-xl py-2 px-6 shadow bg-black text-white hover:bg-gray-900 transition-colors mt-2 mb-6 block text-left"
+            className="font-bold rounded-xl py-2 px-4 sm:px-6 shadow bg-black text-white hover:bg-gray-900 transition-colors mt-2 mb-6 block text-center md:text-left w-full md:w-auto text-sm sm:text-base"
           >
             Igen, ezt az apartmant szeretném!
           </a>
@@ -393,23 +393,23 @@ const ApartmanReszletek = () => {
           initial={{ x: 120, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
-          className="w-full md:w-[340px] flex flex-col items-center md:items-end mt-8 md:mt-0"
+          className="w-full md:w-[340px] flex flex-col items-center md:items-end mt-4 md:mt-0"
         >
-          <div className="flex flex-col items-center md:items-end">
-            <div className="flex items-center mb-4">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-gold to-yellow-200 flex items-center justify-center shadow-lg border-4 border-white mr-3">
-                <Bot className="w-10 h-10 text-white drop-shadow" />
+          <div className="flex flex-col items-center md:items-end w-full">
+            <div className="flex items-center mb-4 w-full justify-center md:justify-end">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-gold to-yellow-200 flex items-center justify-center shadow-lg border-3 sm:border-4 border-white mr-2 sm:mr-3">
+                <Bot className="w-8 h-8 sm:w-10 sm:h-10 text-white drop-shadow" />
               </div>
-              <div className="bg-white rounded-2xl shadow px-4 py-3 text-deepBlue font-medium text-base w-full md:max-w-xs max-w-sm border border-gold/30 min-h-[64px] flex items-center">
+              <div className="bg-white rounded-2xl shadow px-3 sm:px-4 py-2 sm:py-3 text-deepBlue font-medium text-sm sm:text-base w-full max-w-[260px] sm:max-w-xs border border-gold/30 min-h-[64px] flex items-center">
                 {rozaBubble}
               </div>
             </div>
-            <div className="flex flex-col gap-3 w-full md:w-[260px]">
+            <div className="flex flex-col gap-3 w-full sm:max-w-xs md:w-[260px]">
               {/* Ingyenes foglalás shimmer CTA */}
               <ShimmerButton asChild>
                 <a
                   href={`/fizetes/${apartman.slug}`}
-                  className="w-full text-center font-semibold rounded-xl py-2 px-4 shadow text-white bg-gold/90 hover:bg-gold transition-colors"
+                  className="w-full text-center font-semibold rounded-xl py-2 px-4 shadow text-white bg-gold/90 hover:bg-gold transition-colors text-sm sm:text-base"
                 >
                   Ingyenes foglalás
                 </a>
@@ -419,34 +419,34 @@ const ApartmanReszletek = () => {
                 href="https://m.me/zadarszallas"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 w-full bg-blue-100 hover:bg-blue-200 text-blue-900 font-semibold rounded-xl py-2 px-4 shadow transition-colors"
+                className="flex items-center gap-2 w-full bg-blue-100 hover:bg-blue-200 text-blue-900 font-semibold rounded-xl py-2 px-3 sm:px-4 shadow transition-colors text-sm sm:text-base"
               >
-                Privát kérdésed van? Vedd fel velünk a kapcsolatot Messengeren!
+                <span>Privát kérdésed van? Írj Messengeren!</span>
               </a>
               {/* Facebook csoport */}
               <a
                 href="https://www.facebook.com/groups/1327638613936773"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 w-full bg-blue-50 hover:bg-blue-100 text-blue-900 font-semibold rounded-xl py-2 px-4 shadow transition-colors"
+                className="flex items-center gap-2 w-full bg-blue-50 hover:bg-blue-100 text-blue-900 font-semibold rounded-xl py-2 px-3 sm:px-4 shadow transition-colors text-xs sm:text-sm"
               >
-                Csatlakozz Facebook csoportunkhoz a legfrissebb akciókért és tippekért!
+                <span>Csatlakozz Facebook csoportunkhoz!</span>
               </a>
               {/* További Róza gombok */}
               <button
-                className={`w-full font-semibold rounded-xl py-2 px-4 shadow transition-colors text-left ${rozaState==='leiras' ? 'bg-green-500 text-white animate-[roza-blink_0.6s_ease-in-out_3]' : 'bg-gold/90 hover:bg-gold text-white'}`}
+                className={`w-full font-semibold rounded-xl py-2 px-3 sm:px-4 shadow transition-colors text-left text-sm sm:text-base ${rozaState==='leiras' ? 'bg-green-500 text-white animate-[roza-blink_0.6s_ease-in-out_3]' : 'bg-gold/90 hover:bg-gold text-white'}`}
                 onClick={() => setRozaState('leiras')}
               >
                 Apartman leírás
               </button>
               <button
-                className={`w-full font-semibold rounded-xl py-2 px-4 shadow transition-colors text-left ${rozaState==='elerhetoseg' ? 'bg-gold text-white ring-2 ring-gold' : 'bg-gold/90 hover:bg-gold text-white'}`}
+                className={`w-full font-semibold rounded-xl py-2 px-3 sm:px-4 shadow transition-colors text-left text-sm sm:text-base ${rozaState==='elerhetoseg' ? 'bg-gold text-white ring-2 ring-gold' : 'bg-gold/90 hover:bg-gold text-white'}`}
                 onClick={() => setRozaState('elerhetoseg')}
               >
                 Elérhetőségek
               </button>
               <button
-                className={`w-full font-semibold rounded-xl py-2 px-4 shadow transition-colors text-left ${rozaState==='gyik' ? 'bg-gold text-white ring-2 ring-gold' : 'bg-gold/90 hover:bg-gold text-white'}`}
+                className={`w-full font-semibold rounded-xl py-2 px-3 sm:px-4 shadow transition-colors text-left text-sm sm:text-base ${rozaState==='gyik' ? 'bg-gold text-white ring-2 ring-gold' : 'bg-gold/90 hover:bg-gold text-white'}`}
                 onClick={() => setRozaState('gyik')}
               >
                 Gyakran ismételt kérdések
