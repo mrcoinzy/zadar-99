@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
 import Navbar from '@/components/Navbar';
@@ -13,13 +13,6 @@ import { Apartmanok } from '@/components/Apartmanok';
 import Footer from '@/components/Footer';
 
 const Index = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    if (window.location.hash) {
-      history.replaceState(null, '', window.location.pathname);
-    }
-  }, []);
-
   return (
     <motion.div
       className="relative w-full"

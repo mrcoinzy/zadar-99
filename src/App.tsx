@@ -16,6 +16,7 @@ const ScrollToTop = () => {
   const { pathname } = useLocation();
   
   useLayoutEffect(() => {
+    // Minden útvonalváltozáskor és kezdeti betöltéskor felgörgetünk
     window.scrollTo(0, 0);
   }, [pathname]);
   
