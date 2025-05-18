@@ -8,18 +8,20 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  // Egyszerű görgetés figyelés
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+    const checkScrollPosition = () => {
+      setIsScrolled(window.scrollY > 0);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+
+    // Kezdeti ellenőrzés
+    checkScrollPosition();
+    
+    // Eseménykezelő hozzáadása
+    window.addEventListener('scroll', checkScrollPosition);
+    
+    // Tisztítás
+    return () => window.removeEventListener('scroll', checkScrollPosition);
   }, []);
 
   return (
@@ -32,13 +34,9 @@ const Navbar = () => {
         className={cn(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
           isScrolled
-            ? 'bg-white/70 backdrop-blur-xl shadow-lg border-b border-gold/20'
-            : 'bg-gradient-to-b from-white/80 to-transparent'
+            ? 'bg-white/95 backdrop-blur-2xl shadow-lg border-b border-gold/20'
+            : 'bg-transparent'
         )}
-        style={{
-          WebkitBackdropFilter: isScrolled ? 'blur(16px)' : undefined,
-          backdropFilter: isScrolled ? 'blur(16px)' : undefined,
-        }}
       >
         <div className="container mx-auto px-4 md:px-6 flex items-center justify-between min-h-[64px]">
           <a href="/" className="flex items-center">
@@ -85,10 +83,6 @@ const Navbar = () => {
               exit={{ y: -40, opacity: 0 }}
               transition={{ duration: 0.3 }}
               className="md:hidden bg-white/90 backdrop-blur-xl shadow-lg border-b border-gold/20"
-              style={{
-                WebkitBackdropFilter: 'blur(16px)',
-                backdropFilter: 'blur(16px)',
-              }}
             >
               <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
                 <a

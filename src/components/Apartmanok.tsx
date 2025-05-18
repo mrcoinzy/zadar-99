@@ -8,15 +8,15 @@ const apartmanok = [
   {
     id: 1,
     slug: 'adria-deluxe',
-    name: 'Adria Deluxe',
-    image: '/placeholder.svg',
-    short: 'Tágas, tengerre néző luxus apartman, saját jacuzzival és napozóterasszal.',
+    name: 'Zadar Riviera Apartmanház',
+    image: '/lovable-uploads/0160d8b9-488e-4c98-9eb4-793e9a769917.png',
+    short: 'Tágas, tengerre néző luxus apartman, saját medencével és napozóterasszal.',
     details: '2 hálószoba, 2 fürdő, prémium konyha, közvetlen tengerparti kilátás, okosotthon rendszer, privát parkoló.',
     features: [
       { icon: Home, text: '2 hálószoba' },
-      { icon: Bath, text: '2 fürdő' },
+      { icon: Bath, text: '1 fürdő' },
       { icon: Utensils, text: 'Prémium konyha' },
-      { icon: ParkingSquare, text: 'Privát parkoló' },
+      { icon: ParkingSquare, text: 'Ingyenes Privát parkoló' },
       { icon: Sun, text: 'Közvetlen tengerparti kilátás' },
       { icon: Wifi, text: 'Okosotthon rendszer' }
     ]
@@ -24,22 +24,22 @@ const apartmanok = [
   {
     id: 2,
     slug: 'sunset-loft',
-    name: 'Sunset Loft',
-    image: '/placeholder.svg',
-    short: 'Modern, panorámás apartman, naplemente terasszal és designer bútorokkal.',
-    details: '1 hálószoba, 1 fürdő, amerikai konyha, óriási üvegfal, smart TV, közvetlen strandkapcsolat.',
+    name: 'Elit Apartmanház',
+    image: '/lovable-uploads/c3d24d50-db97-4ac5-997f-d3b830815510.png',
+    short: 'Panorámás apartmanház tengerre néző terasszal Zadar egyik legnépszerűbb, elit strandövezetében',
+    details: 'Több hálószobás, 1 fürdő, felszerelt konyha, óriási üvegfal, Extra gyors Wifi, közvetlen strandkapcsolat.',
     features: [
-      { icon: Home, text: '1 hálószoba' },
+      { icon: Home, text: 'Több hálószobás' },
       { icon: Bath, text: '1 fürdő' },
-      { icon: Utensils, text: 'Amerikai konyha' },
+      { icon: Utensils, text: 'Felszerelt konyha' },
       { icon: Sun, text: 'Közvetlen strandkapcsolat' },
-      { icon: Wifi, text: 'Smart TV' }
+      { icon: ParkingSquare, text: 'Ingyenes privát parkoló' }
     ]
   },
   {
     id: 3,
     slug: 'mediterran-garden',
-    name: 'Mediterrán Garden',
+    name: 'Diklo Ivica Apartmanház',
     image: '/images/elso_apartman.png',
     short: 'Hangulatos kertkapcsolatos apartman, mediterrán növényekkel és grillterasszal.',
     details: '2 hálószoba, 1 fürdő, teljesen felszerelt konyha, privát kert, kültéri étkező.',
