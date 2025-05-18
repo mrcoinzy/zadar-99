@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ShimmerButton } from './ui/shimmer-button';
@@ -27,9 +27,19 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', checkScrollPosition);
   }, []);
   
-  // Oldal tetejére görgetés az új útvonalra lépéskor
-  useEffect(() => {
-    window.scrollTo(0, 0);
+  // Oldal tetejére görgetés az új útvonalra lépéskor - használjuk a useLayoutEffect-et
+  useLayoutEffect(() => {
+    // Azonnali görgetés a tetejére
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'instant'
+    });
+    
+    // Extra biztosíték
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 0);
   }, [location.pathname]);
 
   return (

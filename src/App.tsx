@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, useNavigationType } from "react-router-dom";
 import { useLayoutEffect } from "react";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
@@ -14,11 +14,24 @@ const queryClient = new QueryClient();
 // ScrollToTop komponens, amely minden navigációkor felgörget
 const ScrollToTop = () => {
   const { pathname } = useLocation();
+  const navigationType = useNavigationType();
   
   useLayoutEffect(() => {
-    // Minden útvonalváltozáskor és kezdeti betöltéskor felgörgetünk
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    // PUSH (új oldal betöltés), REPLACE (átirányítás) vagy POP (előre/hátra navigálás) esetén is görgetünk
+    if (navigationType !== 'REPLACE') {
+      // Biztosítjuk, hogy a lap tetejére görgessen az összes esetben
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'instant' // Ne legyen animáció, azonnali görgetés
+      });
+      
+      // Extra biztosíték - ha az első nem működne
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 0);
+    }
+  }, [pathname, navigationType]);
   
   return null;
 };
