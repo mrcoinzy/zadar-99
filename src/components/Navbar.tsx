@@ -1,12 +1,15 @@
+
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ShimmerButton } from './ui/shimmer-button';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link, useLocation } from 'react-router-dom'; 
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   // Egyszerű görgetés figyelés
   useEffect(() => {
@@ -23,6 +26,11 @@ const Navbar = () => {
     // Tisztítás
     return () => window.removeEventListener('scroll', checkScrollPosition);
   }, []);
+  
+  // Oldal tetejére görgetés az új útvonalra lépéskor
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return (
     <AnimatePresence>
@@ -39,11 +47,11 @@ const Navbar = () => {
         )}
       >
         <div className="container mx-auto px-4 md:px-6 flex items-center justify-between min-h-[64px]">
-          <a href="/" className="flex items-center">
+          <Link to="/" className="flex items-center">
             <span className="text-2xl font-montserrat font-bold text-deepBlue">
               <span className="text-gold">Villa</span> Zadar
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
