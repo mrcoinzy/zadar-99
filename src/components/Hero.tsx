@@ -50,7 +50,7 @@ const Hero = () => {
               className="w-full h-full"
             >
               <img 
-                src="/public/images/diklo/diklo-terasz.jpg" 
+                src="/images/diklo/diklo-terasz.jpg" 
                 alt="Luxus apartman a tengerparton" 
                 className="w-full h-[500px] object-cover rounded-xl"
               />
