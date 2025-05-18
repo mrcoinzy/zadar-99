@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 
-// Minden görgetéssel kapcsolatos beállítást a legkorábban végzünk el
+// Legkoraibb végrehajtás - görgetés kezelése még a DOM betöltése előtt
 // Biztosítsuk, hogy az alkalmazás mindig a tetejéről indul
 if (history.scrollRestoration) {
   history.scrollRestoration = 'manual';
@@ -12,21 +12,32 @@ if (history.scrollRestoration) {
 // Kezdeti görgetés a tetejére - nincs animáció, azonnali
 window.scrollTo(0, 0);
 
-// Fontos: először görgetünk, aztán renderelünk
+// DOM elem referenciák közvetlen beállítása
 document.documentElement.scrollTop = 0;
 document.body.scrollTop = 0;
+
+// Fontos betöltési események rögzítése
+window.addEventListener('load', () => {
+  window.scrollTo(0, 0);
+});
 
 // DOMContentLoaded eseményre is beállítjuk a görgetést
 document.addEventListener('DOMContentLoaded', () => {
   window.scrollTo(0, 0);
 });
 
+// Alkalmazás renderelése
 const root = createRoot(document.getElementById("root")!);
-
-// Először rendereljük az alkalmazást
 root.render(<App />);
 
 // Renderelés után is biztosítjuk a felgörgetést
 setTimeout(() => {
   window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
 }, 0);
+
+// Még egy késleltetett görgetés a teljes biztonság érdekében
+setTimeout(() => {
+  window.scrollTo(0, 0);
+}, 100);
