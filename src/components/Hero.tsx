@@ -14,7 +14,7 @@ const Hero = () => {
   };
 
   return (
-    <AuroraBackground className="relative overflow-hidden" fullHeight={true}>
+    <AuroraBackground className="relative overflow-hidden pt-16" fullHeight={true}>
       <div className="container mx-auto px-4 md:px-6 py-8 sm:py-12 md:py-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center">
           <div className="max-w-3xl">
@@ -27,7 +27,7 @@ const Hero = () => {
               Zadar apartmanjaiban nem csak szállást kapsz, hanem olyan élményt, 
               amire egész évben visszavágysz. Itt minden rólad szól, minden részlet személyre szabott.
             </p>
-            <ShimmerButton asChild>
+            <ShimmerButton asChild className="bg-gradient-to-r from-gold to-deepBlue border-none">
               <a href="#testimonials" className="inline-block text-xs sm:text-base text-black">
                 Mutasd, mi vár rám Zadarban
               </a>
