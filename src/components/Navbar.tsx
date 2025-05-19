@@ -11,14 +11,15 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
 
-  // Egyszerű görgetés figyelés
+  // Módosított görgetés figyelés - alacsonyabb küszöbérték
   useEffect(() => {
     const checkScrollPosition = () => {
-      setIsScrolled(window.scrollY > 0);
+      // Már 10px görgetés után aktiváljuk a blur effektust
+      setIsScrolled(window.scrollY > 10);
     };
 
-    // Kezdeti ellenőrzés
-    checkScrollPosition();
+    // Kezdeti állapot beállítása - alapértelmezetten blur effektus aktív
+    setIsScrolled(true);
     
     // Eseménykezelő hozzáadása
     window.addEventListener('scroll', checkScrollPosition);
@@ -51,9 +52,8 @@ const Navbar = () => {
         transition={{ duration: 0.6, ease: 'easeOut' }}
         className={cn(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-          isScrolled
-            ? 'bg-white/95 backdrop-blur-2xl shadow-lg border-b border-gold/20'
-            : 'bg-transparent'
+          // Mindig alkalmazunk hátteret és blur effektust
+          'bg-white/80 backdrop-blur-md shadow-sm border-b border-gold/10'
         )}
       >
         <div className="container mx-auto px-4 md:px-6 flex items-center justify-between min-h-[64px]">
