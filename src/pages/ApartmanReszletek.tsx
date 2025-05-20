@@ -1,3 +1,4 @@
+
 import React, { useRef, useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { Bed, Bath, Home, ParkingSquare, Sun, Utensils, Wifi, KeyRound, Bot, Phone, Mail, Facebook, Ship, X, ChevronLeft, ChevronRight, ArrowLeft, TreeDeciduous, AirVent, Tv, Tent } from 'lucide-react';
@@ -274,7 +275,7 @@ const ApartmanReszletek = () => {
     <div className="min-h-screen flex flex-col items-center bg-white py-8 sm:py-12 px-3 sm:px-4">
       <div className="w-full max-w-6xl flex flex-col md:flex-row gap-6 md:gap-10 lg:gap-16 items-start">
         {/* Bal oldal: apartman adatok */}
-        <div className="flex-1 w-full flex flex-col items-center md:items-start">
+        <div className="flex-1 w-full flex flex-col items-start">
           {/* Vissza a főoldalra gomb */}
           <a
             href="/"
@@ -344,11 +345,11 @@ const ApartmanReszletek = () => {
             </div>
           )}
           {/* Név, leírás, részletek */}
-          <h1 className="text-2xl sm:text-3xl font-bold text-deepBlue mb-2 text-center md:text-left">{apartman.name}</h1>
-          <div ref={leirasRef} className={`transition-all duration-200 mb-4 text-base sm:text-lg text-gray-700 text-center md:text-left rounded-xl px-2 py-1 ${leirasAnim ? 'border-4 border-green-500 animate-[roza-blink_0.6s_ease-in-out_3]' : ''}`}>{apartman.short}</div>
-          <p className="text-sm sm:text-base text-gray-500 mb-6 text-center md:text-left">{apartman.details}</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-deepBlue mb-2 text-left">{apartman.name}</h1>
+          <div ref={leirasRef} className={`transition-all duration-200 mb-4 text-base sm:text-lg text-gray-700 text-left rounded-xl px-2 py-1 ${leirasAnim ? 'border-4 border-green-500 animate-[roza-blink_0.6s_ease-in-out_3]' : ''}`}>{apartman.short}</div>
+          <p className="text-sm sm:text-base text-gray-500 mb-6 text-left">{apartman.details}</p>
           {/* Jellemzők */}
-          <div className="flex flex-wrap gap-4 sm:gap-6 mb-4 justify-center md:justify-start">
+          <div className="flex flex-wrap gap-4 sm:gap-6 mb-4 justify-start">
             {apartman.features.map((feature, i) => (
               <div key={i} className="flex flex-row items-center gap-2 text-deepBlue/90 text-sm sm:text-base">
                 {React.createElement(feature.icon, { className: 'w-4 h-4 sm:w-5 sm:h-5 text-gold' })}
@@ -383,7 +384,7 @@ const ApartmanReszletek = () => {
           {/* CTA */}
           <a
             href={`/fizetes/${apartman.slug}`}
-            className="font-bold rounded-xl py-2 px-4 sm:px-6 shadow bg-black text-white hover:bg-gray-900 transition-colors mt-2 mb-6 block text-center md:text-left w-full md:w-auto text-sm sm:text-base"
+            className="font-bold rounded-xl py-2 px-4 sm:px-6 shadow bg-black text-white hover:bg-gray-900 transition-colors mt-2 mb-6 block w-full md:w-auto text-center md:text-left text-sm sm:text-base"
           >
             Igen, ezt az apartmant szeretném!
           </a>
@@ -393,10 +394,10 @@ const ApartmanReszletek = () => {
           initial={{ x: 120, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
-          className="w-full md:w-[340px] flex flex-col items-center md:items-end mt-4 md:mt-0"
+          className="w-full md:w-[340px] flex flex-col items-start md:items-end mt-4 md:mt-0"
         >
-          <div className="flex flex-col items-center md:items-end w-full">
-            <div className="flex items-center mb-4 w-full justify-center md:justify-end">
+          <div className="flex flex-col items-start md:items-end w-full">
+            <div className="flex items-start md:items-center mb-4 w-full justify-start md:justify-end">
               <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-gold to-yellow-200 flex items-center justify-center shadow-lg border-3 sm:border-4 border-white mr-2 sm:mr-3">
                 <Bot className="w-8 h-8 sm:w-10 sm:h-10 text-white drop-shadow" />
               </div>
@@ -434,19 +435,19 @@ const ApartmanReszletek = () => {
               </a>
               {/* További Róza gombok */}
               <button
-                className={`w-full font-semibold rounded-xl py-2 px-3 sm:px-4 shadow transition-colors text-left text-sm sm:text-base ${rozaState==='leiras' ? 'bg-green-500 text-white animate-[roza-blink_0.6s_ease-in-out_3]' : 'bg-gold/90 hover:bg-gold text-white'}`}
+                className={`w-full font-semibold rounded-xl py-2 px-4 sm:px-4 shadow transition-colors text-left text-sm sm:text-base ${rozaState==='leiras' ? 'bg-green-500 text-white animate-[roza-blink_0.6s_ease-in-out_3]' : 'bg-gold/90 hover:bg-gold text-white'}`}
                 onClick={() => setRozaState('leiras')}
               >
                 Apartman leírás
               </button>
               <button
-                className={`w-full font-semibold rounded-xl py-2 px-3 sm:px-4 shadow transition-colors text-left text-sm sm:text-base ${rozaState==='elerhetoseg' ? 'bg-gold text-white ring-2 ring-gold' : 'bg-gold/90 hover:bg-gold text-white'}`}
+                className={`w-full font-semibold rounded-xl py-2 px-4 sm:px-4 shadow transition-colors text-left text-sm sm:text-base ${rozaState==='elerhetoseg' ? 'bg-gold text-white ring-2 ring-gold' : 'bg-gold/90 hover:bg-gold text-white'}`}
                 onClick={() => setRozaState('elerhetoseg')}
               >
                 Elérhetőségek
               </button>
               <button
-                className={`w-full font-semibold rounded-xl py-2 px-3 sm:px-4 shadow transition-colors text-left text-sm sm:text-base ${rozaState==='gyik' ? 'bg-gold text-white ring-2 ring-gold' : 'bg-gold/90 hover:bg-gold text-white'}`}
+                className={`w-full font-semibold rounded-xl py-2 px-4 sm:px-4 shadow transition-colors text-left text-sm sm:text-base ${rozaState==='gyik' ? 'bg-gold text-white ring-2 ring-gold' : 'bg-gold/90 hover:bg-gold text-white'}`}
                 onClick={() => setRozaState('gyik')}
               >
                 Gyakran ismételt kérdések
