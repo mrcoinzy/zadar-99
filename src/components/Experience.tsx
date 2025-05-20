@@ -88,7 +88,7 @@ const Experience = () => {
           </div>
           <div className="order-1 lg:order-2 rounded-3xl overflow-hidden shadow-float">
             <img
-              src="https://images.unsplash.com/photo-1528156739598-89a2b3a2c153?auto=format&fit=crop&q=80"
+              src="lovable-uploads/garden_pezsgo.png"
               alt="Varázslatos esték"
               className="w-full h-auto object-cover rounded-3xl transform transition-transform duration-700 hover:scale-105"
               style={{ maxHeight: '400px', minHeight: '250px', objectPosition: 'center' }}

@@ -21,28 +21,27 @@ const apartmanok = [
   },
   {
     slug: 'sunset-loft',
-    name: 'Sunset Loft',
-    image: '/placeholder.svg',
-    short: 'Modern, panorámás apartman, naplemente terasszal és designer bútorokkal.',
-    features: [
-      { icon: Home, text: '1 hálószoba' },
-      { icon: Bath, text: '1 fürdő' },
-      { icon: Utensils, text: 'Amerikai konyha' },
-      { icon: Sun, text: 'Panoráma' },
-      { icon: Wifi, text: 'Smart TV' },
-    ]
-  },
-  {
-    slug: 'mediterran-garden',
-    name: 'Mediterrán Garden',
-    image: '/images/elso_apartman.jpg',
+    name: 'Diklo Ivica Apartman',
+    image: '/images/elso_apartman.png',
     short: 'Hangulatos kertkapcsolatos apartman, mediterrán növényekkel és grillterasszal.',
     features: [
       { icon: Home, text: '2 hálószoba' },
       { icon: Bath, text: '1 fürdő' },
-      { icon: Utensils, text: 'Felszerelt konyha' },
-      { icon: ParkingSquare, text: 'Privát kert' },
-      { icon: Sun, text: 'Grillterasz' },
+      { icon: Utensils, text: 'Teljesen felszerelt konyha' },
+      { icon: ParkingSquare, text: 'Privát parkoló' },
+      { icon: Utensils, text: 'Kültéri étkező' },
+    ]
+  },
+  {
+    slug: 'mediterran-garden',
+    name: 'Zadar Riviera',
+    image: '/lovable-uploads/0160d8b9-488e-4c98-9eb4-793e9a769917.png',
+    short: 'Tágas, tengerre néző luxus apartman, saját medencével és napozóterasszal.',
+    features: [
+      { icon: Home, text: '2 hálószoba' },
+      { icon: Bath, text: '1 fürdő' },
+      { icon: Utensils, text: 'Teljesen felszerelt konyha' },
+      { icon: ParkingSquare, text: 'Ingyenes Privát parkoló' },
     ]
   }
 ];
