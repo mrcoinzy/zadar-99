@@ -62,7 +62,7 @@ const Contact = () => {
                   Hívj minket közvetlenül, vagy kérj visszahívást a számodra megfelelő időpontban.
                 </p>
                 <p className="mt-2 text-sm sm:text-base">
-                  <a href="tel:+36301234567" className="text-gold font-medium hover:underline">+36 30 123 4567</a>
+                  <a href="tel:+36205805343" className="text-gold font-medium hover:underline">+36 20 580 5343</a>
                 </p>
               </div>
             </div>
@@ -77,8 +77,8 @@ const Contact = () => {
                   Küldj nekünk részletes levelet, és mi ugyanolyan részletességgel válaszolunk.
                 </p>
                 <p className="mt-2 text-sm sm:text-base">
-                  <a href="mailto:info@villazadar.com" className="text-gold font-medium hover:underline">
-                    info@villazadar.com
+                  <a href="mailto:zadarszallas@gmail.com" className="text-gold font-medium hover:underline">
+                    zadarszallas@gmail.com
                   </a>
                 </p>
               </div>

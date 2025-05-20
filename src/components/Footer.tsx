@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Facebook, Instagram, Twitter, MapPin } from 'lucide-react';
+import { Facebook, Twitter, MapPin, Youtube } from 'lucide-react';
 
 const Footer = () => {
   // Removed the useEffect that was setting document body styles
@@ -20,15 +19,15 @@ const Footer = () => {
               Exkluzív apartmanok a horvát tengerparton, ahol minden részlet rólad szól.
             </p>
             <div className="flex space-x-3 sm:space-x-4">
-              <a href="#" className="bg-white/10 hover:bg-gold/20 p-1.5 sm:p-2 rounded-full transition-colors">
+              <a href="https://www.facebook.com/zadarkiadoapartmanokraczattila" className="bg-white/10 hover:bg-gold/20 p-1.5 sm:p-2 rounded-full transition-colors">
                 <Facebook className="w-4 h-4 sm:w-5 sm:h-5" />
               </a>
-              <a href="#" className="bg-white/10 hover:bg-gold/20 p-1.5 sm:p-2 rounded-full transition-colors">
-                <Instagram className="w-4 h-4 sm:w-5 sm:h-5" />
+              <a href="https://www.youtube.com/@zadarszallas/featured" className="bg-white/10 hover:bg-gold/20 p-1.5 sm:p-2 rounded-full transition-colors">
+                <Youtube className="w-4 h-4 sm:w-5 sm:h-5" />
               </a>
-              <a href="#" className="bg-white/10 hover:bg-gold/20 p-1.5 sm:p-2 rounded-full transition-colors">
+              {/* <a href="#" className="bg-white/10 hover:bg-gold/20 p-1.5 sm:p-2 rounded-full transition-colors">
                 <Twitter className="w-4 h-4 sm:w-5 sm:h-5" />
-              </a>
+              </a> */}
             </div>
           </div>
           
@@ -61,13 +60,13 @@ const Footer = () => {
                 <span>Zadar, Horvátország</span>
               </li>
               <li>
-                <a href="tel:+36301234567" className="hover:text-gold transition-colors">
-                  +36 30 123 4567
+                <a href="tel:+36205805343" className="hover:text-gold transition-colors">
+                +36 20 580 5343
                 </a>
               </li>
               <li>
-                <a href="mailto:info@villazadar.com" className="hover:text-gold transition-colors">
-                  info@villazadar.com
+                <a href="mailto:zadarszallas@gmail.com" className="hover:text-gold transition-colors">
+                zadarszallas@gmail.com
                 </a>
               </li>
             </ul>
@@ -97,6 +96,7 @@ const Footer = () => {
         
         <div className="pt-6 sm:pt-8 border-t border-white/10 text-center text-white/60 text-xs sm:text-sm pb-6">
           <p>&copy; {new Date().getFullYear()} Villa Zadar. Minden jog fenntartva.</p>
+          <p>Készítte az oldalt: <a href="https://ailaszlo.com" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">AI László</a></p>
         </div>
       </div>
       
